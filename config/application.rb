@@ -21,5 +21,9 @@ module IntaugBbs
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
+
+    if Rails.env.production? || Rails.env.staging?
+      Rails.application.config.middleware.use Rack::SSL
+    end
   end
 end

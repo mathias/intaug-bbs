@@ -1,8 +1,13 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_filter :set_hsts_header
 
   protected
+
+  def set_hsts_header
+    response.headers["Strict-Transport-Security"] = "max-age=31536000; includeSubDomains;"
+  end
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: %i(display_name))

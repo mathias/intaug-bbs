@@ -114,4 +114,8 @@ Rails.application.configure do
                            ENV.fetch('MAX_THREADS', 5).to_i].max
         }
   end
+
+  config.middleware.use Rack::HostRedirect, {
+    'intaug.herokuapp.com' => 'intaug.org'
+  }
 end
