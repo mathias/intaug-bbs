@@ -50,10 +50,13 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
+group :test do
+  gem 'rspec-rails'
+  gem 'capybara'
+end
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-gem 'rspec-rails', groups: %i(test)
-gem 'capybara', groups: %i(test)
+#gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'simple_form'
 gem 'devise'
 gem 'devise-i18n'
@@ -67,3 +70,4 @@ gem 'rack-ssl'
 gem 'rack-host-redirect'
 gem 'rollbar'
 gem 'oj', '~> 2.12.14'
+gem 'tunemygc'
