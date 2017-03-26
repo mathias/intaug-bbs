@@ -124,4 +124,9 @@ Rails.application.configure do
     host: 'intaug.org',
     protocol: 'https'
   }
+
+  config.action_mailer.default_url_options = {
+    host: 'intaug.org',
+    protocol: 'https'
+  }
 end
