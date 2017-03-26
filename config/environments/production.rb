@@ -119,4 +119,9 @@ Rails.application.configure do
   config.middleware.use Rack::HostRedirect, {
     'intaug.herokuapp.com' => 'intaug.org'
   }
+
+  config.action_controller.default_url_options = {
+    host: 'intaug.org',
+    protocol: 'https'
+  }
 end
