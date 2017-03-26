@@ -54,4 +54,22 @@ Rollbar.configure do |config|
   # setup for Heroku. See:
   # https://devcenter.heroku.com/articles/deploying-to-a-custom-rails-environment
   config.environment = ENV['ROLLBAR_ENV'] || Rails.env
+
+  config.scrub_fields = [
+    'password',
+    'confirm_password',
+    'authorization',
+    'authenticity_token',
+    '_intaug-bbs_session',
+    'request.cookies'
+  ]
+  config.scrub_headers = [
+    'Authorization',
+    "HTTP_AUTHORIZATION",
+    "Cookie",
+    "Set-Cookie",
+    "X_CSRF_TOKEN",
+    "HTTP_X_CSRF_TOKEN",
+    "X-Csrf-Token",
+  ]
 end
