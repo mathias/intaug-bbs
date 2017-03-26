@@ -67,7 +67,7 @@ Thredded.messageboards_order = :position
 Thredded.email_from = 'no-reply@intaug.org'
 
 # Emails going out will prefix the "Subject:" with the following string
- Thredded.email_outgoing_prefix = '[My Forum] '
+Thredded.email_outgoing_prefix = '[intaug.org bbs] '
 
 # ==> View Configuration
 # Set the layout for rendering the thredded views.
