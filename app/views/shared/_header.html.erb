@@ -9,5 +9,9 @@
         <%= link_to t('nav.sign_in'), main_app.new_user_session_path %>
     <% end %>
   </span>
-  <a class="app-nav-logo" href="/"><%= t 'brand.name' %></a>
+
+  <a class="app-nav-logo" href="/">
+    <%= image_tag '1490588448_android-brain.svg', alt: 'logo', class: 'logo' %>
+    <span class='brand-name'><%= t 'brand.name' %></span>
+  </a>
 </header>

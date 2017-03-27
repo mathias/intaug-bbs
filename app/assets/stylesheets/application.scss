@@ -26,20 +26,36 @@
 
 .app-header {
   border-bottom: 1px solid #eee;
+  line-height: 1.5;
+
   a {
     display: inline-block;
     padding: 1rem 0;
   }
 }
 
-.app-nav-logo {
+a.app-nav-logo {
   color: $text-color;
   text-decoration: none;
   font-weight: bold;
+
+  img.logo {
+    float: left;
+    height: 3rem;
+  }
+
+  .brand-name {
+    display: none;
+    margin: 1rem;
+    @include thredded-media-tablet-and-up {
+      display: inline-block;
+    }
+  }
 }
 
 .app-nav-auth {
   float: right;
+  margin: 1rem 0;
 
   @include thredded-media-mobile {
     font-size: 0;
