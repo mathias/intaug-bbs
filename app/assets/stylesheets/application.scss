@@ -46,8 +46,8 @@ a.app-nav-logo {
 
   .brand-name {
     display: none;
-    margin: 1rem;
     @include thredded-media-tablet-and-up {
+      margin: 1rem;
       display: inline-block;
     }
   }
