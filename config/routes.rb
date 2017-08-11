@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   mount Thredded::Engine => '/forum'
   get '/about', to: 'home#about'
 
-  get '/404', to: 'errors#not_found'
-
-  match '*anything', to: redirect('/404'), via: :all
+  get '/not-found', to: 'home#not_found'
+  match '*anything', to: redirect('/not-found'), via: :all
 end
