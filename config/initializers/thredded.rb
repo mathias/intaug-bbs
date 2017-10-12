@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # Thredded configuration
 
 # ==> User Configuration
@@ -7,7 +8,7 @@
 # for your user class - change it here.
 Thredded.user_class = 'User'
 
-# User name column, used in @mention syntax and should be unique.
+# User name column, used in @mention syntax and *must* be unique.
 # This is the column used to search for users' names if/when someone is @ mentioned.
 Thredded.user_name_column = :display_name
 
@@ -19,15 +20,15 @@ Thredded.user_name_column = :display_name
 # When linking to a user, Thredded will use this lambda to spit out
 # the path or url to your user. This lambda is evaluated in the view context.
 Thredded.user_path = lambda do |user|
-  user_path = :"#{Thredded.user_class.name.underscore}_path"
+  user_path = :"#{Thredded.user_class_name.demodulize.underscore}_path"
   main_app.respond_to?(user_path) ? main_app.send(user_path, user) : "/users/#{user.to_param}"
 end
 
 # This method is used by Thredded controllers and views to fetch the currently signed-in user
-Thredded.current_user_method = :"current_#{Thredded.user_class.name.underscore}"
+Thredded.current_user_method = :"current_#{Thredded.user_class_name.demodulize.underscore}"
 
 # User avatar URL. rb-gravatar gem is used by default:
-Thredded.avatar_url = ->(user) { Gravatar.src(user.email, 128, 'mm') }
+Thredded.avatar_url = ->(user) { Gravatar.src(user.email, 156, 'mm') }
 
 # ==> Database Configuration
 # By default, thredded uses integers for record ID route constraints.
@@ -68,10 +69,23 @@ Thredded.email_from = 'no-reply@intaug.org'
 
 # Emails going out will prefix the "Subject:" with the following string
 Thredded.email_outgoing_prefix = '[intaug.org bbs] '
+#
+# The parent mailer for all Thredded mailers
+# Thredded.parent_mailer = 'ActionMailer::Base'
 
 # ==> View Configuration
 # Set the layout for rendering the thredded views.
+#Thredded.layout = 'thredded/application'
 Thredded.layout = 'application'
+
+# ==> URLs
+# How Thredded generates URL slugs from text.
+
+# Default:
+# Thredded.slugifier = ->(input) { input.parameterize }
+
+# If your forum is in a language other than English, you might want to use the babosa gem instead
+# Thredded.slugifier = ->(input) { Babosa::Identifier.new(input).normalize.transliterate(:russian).to_s }
 
 # ==> Post Content Formatting
 # Customize the way Thredded handles post formatting.
@@ -143,12 +157,3 @@ Thredded.notifiers = [Thredded::EmailNotifier.new]
 #
 # add in (must install separate gem (under development) as well):
 # Thredded.notifiers = [Thredded::EmailNotifier.new, Thredded::PushoverNotifier.new(ENV['PUSHOVER_APP_ID'])]
-# frozen_string_literal: true
-Rails.application.config.to_prepare do
-  Thredded::ApplicationController.module_eval do
-    rescue_from Thredded::Errors::LoginRequired do |exception|
-      flash.now[:notice] = exception.message
-      render template: 'devise/sessions/new', status: :forbidden
-    end
-  end
-end
