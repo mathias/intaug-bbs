@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170323163620) do
+ActiveRecord::Schema.define(version: 20170420163138) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -104,15 +104,6 @@ ActiveRecord::Schema.define(version: 20170323163620) do
     t.index ["messageboard_id", "created_at"], name: "index_thredded_moderation_records_for_display", order: { created_at: :desc }, using: :btree
   end
 
-  create_table "thredded_post_notifications", force: :cascade do |t|
-    t.string   "email",      limit: 191, null: false
-    t.integer  "post_id",                null: false
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.string   "post_type",  limit: 191
-    t.index ["post_id", "post_type"], name: "index_thredded_post_notifications_on_post", using: :btree
-  end
-
   create_table "thredded_posts", force: :cascade do |t|
     t.integer  "user_id"
     t.text     "content"
@@ -187,9 +178,9 @@ ActiveRecord::Schema.define(version: 20170323163620) do
     t.datetime "updated_at",                                   null: false
     t.index "to_tsvector('english'::regconfig, (title)::text)", name: "thredded_topics_title_fts", using: :gist
     t.index ["hash_id"], name: "index_thredded_topics_on_hash_id", using: :btree
-    t.index ["messageboard_id", "slug"], name: "index_thredded_topics_on_messageboard_id_and_slug", unique: true, using: :btree
     t.index ["messageboard_id"], name: "index_thredded_topics_on_messageboard_id", using: :btree
     t.index ["moderation_state", "sticky", "updated_at"], name: "index_thredded_topics_for_display", order: { sticky: :desc, updated_at: :desc }, using: :btree
+    t.index ["slug"], name: "index_thredded_topics_on_slug", unique: true, using: :btree
     t.index ["user_id"], name: "index_thredded_topics_on_user_id", using: :btree
   end
 
@@ -209,11 +200,12 @@ ActiveRecord::Schema.define(version: 20170323163620) do
   end
 
   create_table "thredded_user_messageboard_preferences", force: :cascade do |t|
-    t.integer  "user_id",                                 null: false
-    t.integer  "messageboard_id",                         null: false
-    t.boolean  "follow_topics_on_mention", default: true, null: false
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
+    t.integer  "user_id",                                  null: false
+    t.integer  "messageboard_id",                          null: false
+    t.boolean  "follow_topics_on_mention", default: true,  null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+    t.boolean  "auto_follow_topics",       default: false, null: false
     t.index ["user_id", "messageboard_id"], name: "thredded_user_messageboard_preferences_user_id_messageboard_id", unique: true, using: :btree
   end
 
@@ -226,10 +218,11 @@ ActiveRecord::Schema.define(version: 20170323163620) do
   end
 
   create_table "thredded_user_preferences", force: :cascade do |t|
-    t.integer  "user_id",                                 null: false
-    t.boolean  "follow_topics_on_mention", default: true, null: false
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
+    t.integer  "user_id",                                  null: false
+    t.boolean  "follow_topics_on_mention", default: true,  null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+    t.boolean  "auto_follow_topics",       default: false, null: false
     t.index ["user_id"], name: "index_thredded_user_preferences_on_user_id", using: :btree
   end
 
