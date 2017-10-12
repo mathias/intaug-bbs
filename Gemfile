@@ -71,6 +71,6 @@ gem 'rack-ssl'
 gem 'rack-host-redirect'
 gem 'rollbar'
 gem 'oj', '~> 2.12.14'
-gem 'tunemygc'
+# gem 'tunemygc' # Turn this off while we are not tuning
 gem 'sucker_punch'
 gem 'rack-timeout'
