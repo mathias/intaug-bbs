@@ -42,5 +42,12 @@
     {
       "url": "heroku/ruby"
     }
-  ]
+  ],
+  "environments": {
+    "test": {
+      "scripts": {
+        "test": "bundle exec rspec"
+      }
+    }
+  }
 }
