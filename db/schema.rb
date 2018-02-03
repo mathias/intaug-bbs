@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170420163138) do
+ActiveRecord::Schema.define(version: 20170811090735) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,16 +63,17 @@ ActiveRecord::Schema.define(version: 20170420163138) do
   end
 
   create_table "thredded_messageboards", force: :cascade do |t|
-    t.string   "name",                  limit: 191,             null: false
+    t.string   "name",                  limit: 191,                 null: false
     t.string   "slug",                  limit: 191
     t.text     "description"
     t.integer  "topics_count",                      default: 0
     t.integer  "posts_count",                       default: 0
-    t.integer  "position",                                      null: false
+    t.integer  "position",                                          null: false
     t.integer  "last_topic_id"
     t.integer  "messageboard_group_id"
-    t.datetime "created_at",                                    null: false
-    t.datetime "updated_at",                                    null: false
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
+    t.boolean  "locked",                            default: false, null: false
     t.index ["messageboard_group_id"], name: "index_thredded_messageboards_on_messageboard_group_id", using: :btree
     t.index ["slug"], name: "index_thredded_messageboards_on_slug", using: :btree
   end
@@ -196,7 +197,7 @@ ActiveRecord::Schema.define(version: 20170420163138) do
     t.datetime "updated_at",                              null: false
     t.index ["latest_activity_at"], name: "index_thredded_user_details_on_latest_activity_at", using: :btree
     t.index ["moderation_state", "moderation_state_changed_at"], name: "index_thredded_user_details_for_moderations", order: { moderation_state_changed_at: :desc }, using: :btree
-    t.index ["user_id"], name: "index_thredded_user_details_on_user_id", using: :btree
+    t.index ["user_id"], name: "index_thredded_user_details_on_user_id", unique: true, using: :btree
   end
 
   create_table "thredded_user_messageboard_preferences", force: :cascade do |t|
@@ -223,7 +224,7 @@ ActiveRecord::Schema.define(version: 20170420163138) do
     t.datetime "created_at",                               null: false
     t.datetime "updated_at",                               null: false
     t.boolean  "auto_follow_topics",       default: false, null: false
-    t.index ["user_id"], name: "index_thredded_user_preferences_on_user_id", using: :btree
+    t.index ["user_id"], name: "index_thredded_user_preferences_on_user_id", unique: true, using: :btree
   end
 
   create_table "thredded_user_private_topic_read_states", force: :cascade do |t|
