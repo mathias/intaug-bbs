@@ -19,7 +19,8 @@
       "required": true
     },
     "SECRET_KEY_BASE": {
-      "required": true
+      "required": true,
+      "generator": "secret"
     },
     "WEB_CONCURRENCY": {
       "required": true
