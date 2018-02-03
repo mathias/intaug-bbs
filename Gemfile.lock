@@ -135,7 +135,7 @@ GEM
       mini_portile2 (~> 2.3.0)
     nokogumbo (1.4.13)
       nokogiri
-    oj (2.12.14)
+    oj (3.4.0)
     onebox (1.8.19)
       fast_blank (>= 1.0.0)
       htmlentities (~> 4.3)
@@ -317,7 +317,7 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   jquery-rails
   listen (~> 3.0.5)
-  oj (~> 2.12.14)
+  oj
   pg (~> 0.18)
   puma (~> 3.0)
   rack-host-redirect
@@ -341,7 +341,7 @@ DEPENDENCIES
   web-console (>= 3.3.0)
 
 RUBY VERSION
-   ruby 2.3.6p384
+   ruby 2.5.0p0
 
 BUNDLED WITH
    1.16.1

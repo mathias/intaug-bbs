@@ -5,7 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-ruby "2.3.6"
+ruby "2.5.0"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.6'
@@ -70,7 +70,7 @@ gem 'thredded-markdown_coderay'
 gem 'rack-ssl'
 gem 'rack-host-redirect'
 gem 'rollbar'
-gem 'oj', '~> 2.12.14'
+gem 'oj'
 # gem 'tunemygc' # Turn this off while we are not tuning
 gem 'sucker_punch'
 gem 'rack-timeout'
