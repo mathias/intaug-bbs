@@ -1,6 +1,7 @@
 {
   "name": "intaug-bbs",
   "scripts": {
+    "postdeploy": "bundle exec rake db:setup"
   },
   "env": {
     "LANG": {
