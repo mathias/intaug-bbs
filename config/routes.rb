@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
   root to: 'home#show'
 
-  devise_for :users
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  resources :users, only: [:show]
+  # mathias 2018/05/24: Shutdown forums:
+  #devise_for :users
+  # #For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  #resources :users, only: [:show]
 
-  mount Thredded::Engine => '/forum'
+  #mount Thredded::Engine => '/forum'
 
   get '/about', to: 'home#about'
   get '/not-found', to: 'home#not_found'
