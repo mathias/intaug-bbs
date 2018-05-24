@@ -40,13 +40,8 @@
       <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 </head>
 
-  <body class="app">
-<% is_thredded = content_for?(:thredded_page_id) %>
-<%= content_tag :div,
-                class: 'app-container',
-                id: ('app-page-container' unless is_thredded) do %>
-  <%= render 'shared/header' %>
-  <%= render 'shared/flash_messages' unless is_thredded %>
+<body class="app">
+  <div class="app-container">
   <div class="app-content-container"><%= yield %></div>
 
   <hr />
@@ -64,7 +59,7 @@
       (window.App = window.App || {}).DOMContentLoadedFired = true;
     });
   </script>
-<% end %>
+</div>
 </body>
 
 </html>
