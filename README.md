@@ -1,6 +1,8 @@
-# intaug-bbs README
+# intaug-bbs README <DEPRECATED>
+  
+This has been replaced by a new blog, and the forums are no more. I'll keep the code around in this repo as an archive. 
 
-This is a forum community website that lives at https://intaug.org
+https://intaug.org
 
 ## MIT License
 
