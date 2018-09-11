@@ -1,4 +1,4 @@
-# intaug-bbs README <DEPRECATED>
+# intaug-bbs README - *DEPRECATED*
   
 This has been replaced by a new blog, and the forums are no more. I'll keep the code around in this repo as an archive. 
 
